@@ -1,0 +1,13 @@
+{
+  "response": [
+    {
+      "datetime": "1234567890",
+      "filename": "nothing.zip",
+      "id": "e343124234441244123",
+      "romtype": "UNOFFICIAL",
+      "size": "123456789",
+      "url":  "https://example.com",
+      "version": "18.1"
+    }
+  ]
+}

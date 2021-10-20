@@ -5,7 +5,7 @@ REPOS="${@:2}"
 
 d=$(date +%Y%m%d)
 
-FILENAME=lineage-18.0-"${d}"-UNOFFICIAL-"${DEVICE}".zip
+FILENAME=lineage-18.1-"${d}"-UNOFFICIAL-"${DEVICE}".zip
 
 oldd=$(grep filename $DEVICE.json | cut -d '-' -f 3)
 md5=$(md5sum ../out/target/product/$DEVICE/$FILENAME | cut -d ' ' -f 1)
@@ -35,8 +35,14 @@ sed -i "s!${oldutc}! \"${utc}\",!g" $DEVICE.json
 sed -i "s!${oldsize}! \"${size}\",!g" $DEVICE.json
 sed -i "s!${oldd}!${d}!" $DEVICE.json
 #echo Generate Download URL
-TAG=$(echo "${DEVICE}-${d}")
-url="https://github.com/J0SH1X/Lineage-OTA/releases/download/${TAG}/${FILENAME}"
+
+d2=$(date +%Y%m%d-%H%M)
+
+TAG=$(echo "${DEVICE}-${d2}")
+url="https://github.com/meizucustoms/OTAUpdates/releases/download/${TAG}/${FILENAME}"
 sed -i "s!${oldurl}!\"${url}\",!g" $DEVICE.json
 
-hub release create -a ../out/target/product/$DEVICE/$FILENAME -a changelog.txt -m "${TAG}" "${TAG}"
+gh release create "${TAG}" ../out/target/product/$DEVICE/$FILENAME changelog.txt --notes "new OTA update"
+
+git add * && git commit "New OTA update - ${TAG}"
+git push origin master
