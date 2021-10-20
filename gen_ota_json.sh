@@ -1,40 +1,26 @@
 #!/bin/bash
 
 DEVICE=$1
-REPOS="${@:2}"
 
+if [ ! -z "$2" ] && [ "$2" != "onlyjson" ]; then
 d=$(date +%Y%m%d)
 
 FILENAME=lineage-18.1-"${d}"-UNOFFICIAL-"${DEVICE}".zip
 
 oldd=$(grep filename $DEVICE.json | cut -d '-' -f 3)
-md5=$(md5sum ../out/target/product/$DEVICE/$FILENAME | cut -d ' ' -f 1)
+md5=$(md5sum ~/lineageos/out/target/product/$DEVICE/$FILENAME | cut -d ' ' -f 1)
 oldmd5=$(grep '"id"' $DEVICE.json | cut -d':' -f 2)
-utc=$(grep ro.build.date.utc ../out/target/product/$DEVICE/system/build.prop | cut -d '=' -f 2)
+utc=$(grep ro.build.date.utc ~/lineageos/out/target/product/$DEVICE/system/build.prop | cut -d '=' -f 2)
 oldutc=$(grep datetime $DEVICE.json | cut -d ':' -f 2)
-size=$(wc -c ../out/target/product/$DEVICE/$FILENAME | cut -d ' ' -f 1)
+size=$(wc -c ~/lineageos/out/target/product/$DEVICE/$FILENAME | cut -d ' ' -f 1)
 oldsize=$(grep size $DEVICE.json | cut -d ':' -f 2)
 oldurl=$(grep url $DEVICE.json | cut -d ' ' -f 9)
-
-# Generate the Changelog
-# Clear the changelog file
-echo "" > changelog.txt
-
-for repo in ${REPOS[*]}
-do
-    echo "########################################" >> changelog.txt
-    echo "${repo} Changes:" >> changelog.txt
-    git --git-dir ../"${repo}"/.git log --since="${oldutc}" >> changelog.txt
-done
-
-echo "########################################" >> changelog.txt
 
 #This is where the magic happens
 sed -i "s!${oldmd5}! \"${md5}\",!g" $DEVICE.json
 sed -i "s!${oldutc}! \"${utc}\",!g" $DEVICE.json
 sed -i "s!${oldsize}! \"${size}\",!g" $DEVICE.json
 sed -i "s!${oldd}!${d}!" $DEVICE.json
-#echo Generate Download URL
 
 d2=$(date +%Y%m%d-%H%M)
 
@@ -42,7 +28,16 @@ TAG=$(echo "${DEVICE}-${d2}")
 url="https://github.com/meizucustoms/OTAUpdates/releases/download/${TAG}/${FILENAME}"
 sed -i "s!${oldurl}!\"${url}\",!g" $DEVICE.json
 
-gh release create "${TAG}" ../out/target/product/$DEVICE/$FILENAME changelog.txt --notes "new OTA update"
+echo "Creating new release..."
 
-git add * && git commit "New OTA update - ${TAG}"
+gh release create ${TAG} --title ${TAG} -F ~/Lineage-OTA/example_notes.txt ~/lineageos/out/target/product/${DEVICE}/${FILENAME}
+else
+TAG="$(gh release list | grep Latest | sed 's/.*Latest.//g;s/202[0-9]\-.*//g;s/[[:space:]]//g')"
+fi
+
+echo "Pushing new JSON (${TAG})..."
+
+git add * && git commit -m "New OTA update - ${TAG}"
 git push origin master
+
+echo "Done."
