@@ -2,7 +2,7 @@
 
 DEVICE=$1
 
-if [ ! -z "$2" ] && [ "$2" != "onlyjson" ]; then
+if [ ! -z "$2" ] || [ "$2" != "onlyjson" ]; then
 d=$(date +%Y%m%d)
 
 FILENAME=lineage-18.1-"${d}"-UNOFFICIAL-"${DEVICE}".zip
