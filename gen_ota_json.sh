@@ -32,6 +32,7 @@ echo "Creating new release..."
 
 gh release create ${TAG} --title ${TAG} -F ~/Lineage-OTA/example_notes.txt ~/lineageos/out/target/product/${DEVICE}/${FILENAME}
 else
+echo "! onlyjson mode"
 TAG="$(gh release list | grep Latest | sed 's/.*Latest.//g;s/202[0-9]\-.*//g;s/[[:space:]]//g')"
 fi
 
