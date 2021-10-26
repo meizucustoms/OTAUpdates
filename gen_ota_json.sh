@@ -38,6 +38,8 @@ fi
 
 echo "Pushing new JSON (${TAG})..."
 
+read a
+
 git add * && git commit -m "New OTA update - ${TAG}"
 git push origin master
 
