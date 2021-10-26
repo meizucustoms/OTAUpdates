@@ -1,12 +1,12 @@
 {
   "response": [
     {
-      "datetime": "1634800895",
-      "filename": "lineage-18.1-20211021-UNOFFICIAL-m1721.zip",
-      "id": "f443598f46b1621a6d1d1037cc434611",
+      "datetime": "1635263831",
+      "filename": "lineage-18.1-20211026-UNOFFICIAL-m1721.zip",
+      "id": "bcc7c983ebb48bcef3e3337873a26b75",
       "romtype": "UNOFFICIAL",
-      "size": "693909364",
-      "url":  "https://github.com/meizucustoms/OTAUpdates/releases/download/m1721-20211021-1858/lineage-18.1-20211020-UNOFFICIAL-m1721.zip",
+      "size": "693485203",
+      "url":  "https://github.com/meizucustoms/OTAUpdates/releases/download/m1721-20211026-1909/lineage-18.1-20211026-UNOFFICIAL-m1721.zip",
       "version": "18.1"
     }
   ]
