@@ -2,8 +2,12 @@
 
 DEVICE=$1
 
-if [ ! -z "$2" ] || [ "$2" != "onlyjson" ]; then
+if [ -z "$2" ] || [ "$2" != "onlyjson" ]; then
 d=$(date +%Y%m%d)
+
+if [ ! -z "$2" ]; then
+d=$2
+fi
 
 FILENAME=lineage-18.1-"${d}"-UNOFFICIAL-"${DEVICE}".zip
 
@@ -35,6 +39,8 @@ else
 echo "! onlyjson mode"
 TAG="$(gh release list | grep Latest | sed 's/.*Latest.//g;s/202[0-9]\-.*//g;s/[[:space:]]//g')"
 fi
+
+git diff
 
 echo "Pushing new JSON (${TAG})..."
 
