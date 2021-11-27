@@ -40,7 +40,11 @@ sed -i "s!${oldd}!${d}!" $DEVICE.json
 echo "Write some release notes:"
 echo "New update - ${TAG}"
 echo "--------------------------------"
-read notes
+while true; do
+read a
+[ "$a" = "end" ] && break
+notes+="$a"
+done
 
 echo -e "New update - ${TAG}\n--------------------------------\n${notes}" > ~/Lineage-OTA/release_notes.txt
 
