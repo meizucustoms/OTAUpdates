@@ -37,16 +37,9 @@ sed -i "s!${oldurl}!\"${url}\",!g" $DEVICE.json
 sed -i "s!${oldtag}!${TAG}!" $DEVICE.json
 sed -i "s!${oldd}!${d}!" $DEVICE.json
 
-echo "Write some release notes:"
-echo "New update - ${TAG}"
-echo "--------------------------------"
-while true; do
-read a
-[ "$a" = "end" ] && break
-notes+="$a"
-done
-
-echo -e "New update - ${TAG}\n--------------------------------\n${notes}" > ~/Lineage-OTA/release_notes.txt
+echo "Write some release notes..."
+echo -e "New update - ${TAG}\n--------------------------------\n" > ~/Lineage-OTA/release_notes.txt
+code -n -w ~/Lineage-OTA/release_notes.txt
 
 echo "Creating new release..."
 
