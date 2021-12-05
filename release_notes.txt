@@ -1,6 +1,5 @@
-New update - m1721-20211127-1252
+New update - m1721-20211205-2152
 --------------------------------
-Fixed light sensor
-Fixed speaker sound quality (only for multimedia, for ringtones use lower volume)
-All battery bugs should be fixed now
-Quick charge is now really quick
+Fix system freezes
+Fix front camera in Snap
+A lot of new AI-generated wallpapers
