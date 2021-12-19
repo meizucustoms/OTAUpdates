@@ -1,5 +1,7 @@
-New update - m1721-20211205-2152
+New update - m1721-20211219-1451
 --------------------------------
-Fix system freezes
-Fix front camera in Snap
-A lot of new AI-generated wallpapers
+Updated LOS sources (Android revision is the same)
+Fixed front camera doubling in Camera2API mode
+Cleaned some drivers' code
+Brought back stock RIL props - VoLTE works
+Some other minor fixes
