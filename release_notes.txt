@@ -1,7 +1,7 @@
-New update - m1721-20211219-1451
+New update - m1721-20211226-1929
 --------------------------------
-Updated LOS sources (Android revision is the same)
-Fixed front camera doubling in Camera2API mode
-Cleaned some drivers' code
-Brought back stock RIL props - VoLTE works
-Some other minor fixes
+Improved RAM management
+Rewrote cs35l35 IRQ and reset mechanisms
+Included Snap v2 to ROM - all its bugs were fixed.
+Removed internal memory optimizations (they caused unstable work of ROM)
+INSTALL WITH DALVIK-CACHE CLEANING
