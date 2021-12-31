@@ -1,7 +1,10 @@
-New update - m1721-20211226-1929
+New update - m1721-20211231-1113
 --------------------------------
-Improved RAM management
-Rewrote cs35l35 IRQ and reset mechanisms
-Included Snap v2 to ROM - all its bugs were fixed.
-Removed internal memory optimizations (they caused unstable work of ROM)
-INSTALL WITH DALVIK-CACHE CLEANING
+TO MIGRATE TO THIS BUILD WITHOUT WIPING /data, YOU SHOULD FLASH THIS PATCH https://is.gd/MeizuSucksMigration
+Removed non-working buttons backlight button
+Minor fixes and improvements
+Snowflake in power menu
+Brand new bootanimation
+Build is signed with release-keys now
+Finally - Enforcing SELinux
+It's recommended to flash OpenGAPPS if you want to get working location in some apps
